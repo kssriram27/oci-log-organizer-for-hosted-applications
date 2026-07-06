@@ -1,0 +1,38 @@
+node_modules/
+dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local runtime settings and their atomic-write temporary files.
+config/log_app_settings.json
+config/.log_app_settings.json.*.tmp
+
+# OCI credentials and other secrets must remain outside version control.
+.oci/
+*.pem
+*.key
+*.p12
+*.pfx
+.env
+.env.*
+!.env.example
+
+# Generated application data and local diagnostics.
+Exports/
+Formatted_Logs/
+Input_Logs/
+*.log
+.dev-server*.log
+
+# Local tooling and editor artifacts.
+.agents/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Legacy local utilities not used by the current web application.
+formatter.py
+qr_decoder.py
+image.png
