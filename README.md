@@ -20,7 +20,29 @@ npm run dev
 
 Open `http://127.0.0.1:5173`. The development command starts the React client and local API together.
 
-Configure the OCI config-file path, profile, region, and compartment in the **Settings** page. Your choices are written only to `config/log_app_settings.json`, which is ignored by Git. Use `config/log_app_settings.example.json` as the safe template.
+## First-time application setup
+
+No application code changes or manual edits to this repository's settings file are required. After the app is running, complete the setup in the **Settings** page:
+
+1. Open **Settings** from the left navigation (or use **Open Settings** on the home page).
+2. In **OCI Connection**, set **Config file** to the local OCI config file. The default, `~/.oci/config`, is normally correct; on Windows it resolves to `C:\Users\<your-user>\.oci\config`.
+3. Select the OCI **Profile** that contains the credentials to use. The profile list is read from the selected config file; choose `DEFAULT` if that is your configured profile.
+4. Confirm the **Region**. Leave it blank to use the region in the selected OCI profile, or enter an OCI region such as `ap-hyderabad-1` to override it.
+5. Set **Compartment OCID** to the compartment that contains the log groups you need to browse.
+6. Leave **Provider** set to **Auto** unless you specifically need to use only the OCI Python SDK or only the OCI CLI. Auto tries the SDK first and then the CLI if needed.
+7. Select **Save settings**. This also checks the connection and, when successful, loads the available log groups. The **Diagnostics** section shows whether the SDK, CLI, and OCI connection are ready; correct any displayed error before continuing.
+
+Settings are saved locally in `config/log_app_settings.json`, which is ignored by Git. The app does not copy OCI credentials or private keys into the repository.
+
+## Fetch and export logs
+
+Once the OCI connection is ready:
+
+1. Open **Search Logs** and choose a log group. Use the refresh button beside the log-group selector if the list needs reloading.
+2. Select one or more logs, choose a UTC time range (or a quick range), then select **Run**. Each selected log is fetched and formatted separately.
+3. Review the formatted results in the terminal viewer. Use the download button for one result or the archive button to export all formatted results as a ZIP file.
+
+The **Formatter** settings control whether output is text or JSONL, whether to retain only the latest revision, partial-log merging, timestamp ordering, and message timestamp removal. The default options are suitable for most use cases.
 
 ## Validate changes
 
